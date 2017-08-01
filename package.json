@@ -1,7 +1,7 @@
 {
   "name": "pull-request-dashboard",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "dependencies": {
     "@blueprintjs/core": "^1.23.1",
     "@types/jest": "^20.0.4",
