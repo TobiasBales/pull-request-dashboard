@@ -1,7 +1,15 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button, Dialog } from '@blueprintjs/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from 'material-ui';
 
 import { saveToken } from './actions';
 import { Dispatch, State as ReducerState } from './reducer';
@@ -42,37 +50,30 @@ class EnterGithubToken extends React.Component<Props, State> {
       return null;
     }
 
-    const inputClasses = this.props.error ? 'pt-intent-danger' : '';
-
     return (
-      <Dialog
-        isOpen={true}
-        title="Please input your github token"
-        isCloseButtonShown={false}
-      >
-        <div className="pt-dialog-body">
-          <input
-            type="text"
-            className={'pt-input pt-fill ' + inputClasses}
+      <Dialog>
+        <DialogTitle>Please input your github token</DialogTitle>
+        <DialogContent>
+          <TextField
             placeholder="Github token goes here"
+            error={!!this.props.error}
             value={this.state.githubToken}
             onChange={this.onChange}
             disabled={this.props.validatingGithubToken}
           />
           {this.props.error &&
-            <div className="pt-callout pt-intent-danger">
+            <DialogContentText>
               {this.props.error}
-            </div>}
-        </div>
-        <div className="pt-dialog-footer">
-          <div className="pt-dialog-footer-actions">
-            <Button
-              disabled={this.props.validatingGithubToken}
-              text="Save"
-              onClick={this.saveToken}
-            />
-          </div>
-        </div>
+            </DialogContentText>}
+        </DialogContent>
+        <DialogActions>
+          <Button
+            disabled={this.props.validatingGithubToken}
+            onClick={this.saveToken}
+          >
+            Save
+          </Button>
+        </DialogActions>
       </Dialog>
     );
   }

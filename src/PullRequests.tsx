@@ -1,7 +1,14 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Spinner } from '@blueprintjs/core';
+import {
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  CircularProgress,
+} from 'material-ui';
 
 import { PullRequest } from './api';
 import * as actions from './actions';
@@ -21,7 +28,7 @@ interface State {}
 class PullRequests extends React.Component<Props, State> {
   render() {
     if (this.props.loading) {
-      return <Spinner />;
+      return <CircularProgress mode="indeterminate" />;
     }
 
     const repos = Object.keys(this.props.config).reduce((result, repo) => {
@@ -29,7 +36,7 @@ class PullRequests extends React.Component<Props, State> {
         result.push(repo);
       }
       return result;
-    },                                                  [] as string[]);
+    }, [] as string[]);
 
     return (
       <div style={{ display: 'flex' }}>
@@ -66,26 +73,28 @@ class PullRequests extends React.Component<Props, State> {
           });
 
           return (
-            <div
-              key={repo}
-              className="pt-card pull-requests"
-              style={{ width: `${100 / repos.length}%` }}
-            >
-              <h2 className="repo">
-                {repo}
-              </h2>
-              <ul className="list">
+            <div key={repo} style={{ width: `${100 / repos.length}%` }}>
+              <List>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      <h2>
+                        {repo}
+                      </h2>
+                    }
+                  />
+                </ListItem>
                 {pullRequests.map(pr => {
                   return (
-                    <li key={pr.title} className="pull-request">
-                      <img src={pr.avatar} className="image" />
-                      <span className="title">
-                        {pr.title}
-                      </span>
-                    </li>
+                    <ListItem key={pr.title}>
+                      <ListItemAvatar>
+                        <Avatar src={pr.avatar} />
+                      </ListItemAvatar>
+                      <ListItemText primary={pr.title} />
+                    </ListItem>
                   );
                 })}
-              </ul>
+              </List>
             </div>
           );
         })}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Checkbox, Spinner } from '@blueprintjs/core';
+import { Checkbox, CircularProgress, TextField } from 'material-ui';
 
 import { Repository } from './api';
 import * as actions from './actions';
@@ -24,9 +24,10 @@ interface State {}
 
 class Repositories extends React.Component<Props, State> {
   toggleRepository = (repo: string) => (
-    e: React.SyntheticEvent<HTMLInputElement>
+    e: React.SyntheticEvent<HTMLInputElement>,
+    checked: boolean
   ) => {
-    if (e.currentTarget.checked) {
+    if (checked) {
       this.props.enableRepository(repo);
     } else {
       this.props.disableRepository(repo);
@@ -36,17 +37,19 @@ class Repositories extends React.Component<Props, State> {
   setRepositoryFilter = (repo: string) => (
     e: React.SyntheticEvent<HTMLInputElement>
   ) => {
-    this.props.setRepositoryFilter(repo, e.currentTarget.value);
+    {
+      this.props.setRepositoryFilter(repo, e.currentTarget.value);
+    }
   };
 
   render() {
     if (this.props.loading) {
-      return <Spinner />;
+      return <CircularProgress mode="indeterminate" />;
     }
 
     return (
       <div className="center">
-        <table className="pt-table pt-condensed">
+        <table>
           <thead>
             <tr>
               <th>Show</th>
@@ -68,12 +71,10 @@ class Repositories extends React.Component<Props, State> {
                     {repo}
                   </td>
                   <td>
-                    <input
-                      type="text"
-                      className="pt-input"
+                    <TextField
                       disabled={this.props.config[repo] === undefined}
                       value={this.props.config[repo] || ''}
-                      onChange={this.setRepositoryFilter(repo)}
+                      inputProps={{ onChange: this.setRepositoryFilter(repo) }}
                     />
                   </td>
                 </tr>

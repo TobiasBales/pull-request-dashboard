@@ -20,7 +20,7 @@ class Repositories extends React.Component<Props, State> {
     }
 
     return (
-      <div className="pt-callout pt-intent-danger">
+      <div>
         {this.props.error}
       </div>
     );

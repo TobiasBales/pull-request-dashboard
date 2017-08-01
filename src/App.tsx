@@ -14,10 +14,12 @@ class App extends React.Component<{}, {}> {
       <Router>
         <div className="App">
           <Navigation />
-          <Error />
-          <EnterGithubToken />
-          <Route path="/" exact={true} component={Dashboard} />
-          <Route path="/settings" exact={true} component={Settings} />
+          <div style={{ marginTop: '64px' }}>
+            <Error />
+            <EnterGithubToken />
+            <Route path="/" exact={true} component={Dashboard} />
+            <Route path="/settings" exact={true} component={Settings} />
+          </div>
         </div>
       </Router>
     );

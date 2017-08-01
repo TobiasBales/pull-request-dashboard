@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Button } from '@blueprintjs/core';
+import { Button } from 'material-ui';
 
 import * as actions from './actions';
 import { Dispatch, State as ReducerState } from './reducer';
@@ -19,7 +19,9 @@ class ReloadRepositories extends React.Component<Props, State> {
   render() {
     return (
       <div style={{ textAlign: 'right' }}>
-        <Button onClick={this.props.fetchRepositories} text="refresh repos" />
+        <Button raised={true} onClick={this.props.fetchRepositories}>
+          refresh repos
+        </Button>
       </div>
     );
   }

@@ -1,18 +1,18 @@
-import { NavLink } from 'react-router-dom';
 import * as React from 'react';
+import { AppBar, Button, Toolbar } from 'material-ui';
 
 const Navgation: React.SFC<{}> = () => {
   return (
-    <nav className="pt-navbar pt-dark">
-      <div className="pt-navbar-group pt-align-left">
-        <NavLink to="/" className="pt-button pt-minimal pt-icon-home">
-          Home
-        </NavLink>
-      </div>
-      <div className="pt-navbar-group pt-align-right">
-        <NavLink to="/settings" className="pt-button pt-minimal pt-icon-cog" />
-      </div>
-    </nav>
+    <AppBar>
+      <Toolbar>
+        <Button color="contrast" href="/">
+          Some
+        </Button>
+        <Button color="contrast" href="/settings">
+          Settings
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 

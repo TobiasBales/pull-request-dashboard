@@ -5,7 +5,7 @@ import Repositories from './Repositories';
 
 const Settings: React.SFC<{}> = () => {
   return (
-    <div>
+    <div style={{ marginTop: '64px' }}>
       <ReloadRepositories />
       <Repositories />
     </div>
