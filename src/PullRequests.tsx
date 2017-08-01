@@ -38,7 +38,12 @@ class PullRequests extends React.Component<Props, State> {
             .split(',')
             .map(s => s.trim())
             .filter(s => s.length > 0);
+          const greenkeeper = 'greenkeeper[bot]';
           const pullRequests = this.props.pullRequests[repo].filter(pr => {
+            if (pr.author === greenkeeper) {
+              return false;
+            }
+
             if (authors.length === 0) {
               return true;
             }
@@ -46,7 +51,6 @@ class PullRequests extends React.Component<Props, State> {
             return authors.indexOf(pr.author) >= 0;
           });
 
-          const greenkeeper = 'greenkeeper[bot]';
           function defaultCompare(a: string, b: string): number {
             if (a < b) {
               return -1;
@@ -58,19 +62,7 @@ class PullRequests extends React.Component<Props, State> {
           }
 
           pullRequests.sort((p1, p2) => {
-            if (p1.author !== greenkeeper && p2.author !== greenkeeper) {
-              return defaultCompare(p1.title, p2.title);
-            }
-            if (p1.author === greenkeeper && p2.author === greenkeeper) {
-              return defaultCompare(p1.title, p2.title);
-            }
-            if (p1.author === greenkeeper) {
-              return 1;
-            }
-            if (p2.author === greenkeeper) {
-              return -1;
-            }
-            return 0;
+            return defaultCompare(p1.author, p2.author);
           });
 
           return (
