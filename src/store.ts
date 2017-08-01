@@ -47,5 +47,7 @@ export function createStore() {
     }
   });
 
+  setTimeout(() => window.location.reload, 60 * 60 * 1000);
+
   return store;
 }
