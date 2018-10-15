@@ -1,20 +1,36 @@
 import * as React from 'react';
-import './App.css';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import logo from './logo.svg';
+import { SettingsContainer } from './containers/SettingsContainer';
+import { SettingsContext } from './context/SettingsContext';
+import { createClient } from './graphql/client';
+import { RepositoryListView } from './views/RepositoryListView';
+
+import './App.css';
+import { SettingsView } from './views/SettingsView';
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <SettingsContainer>
+          <SettingsContext.Consumer>
+            {settings => {
+              return (
+                <ApolloProvider client={createClient(settings.accessToken)}>
+                  <div className="App">
+                    <Switch>
+                      <Route path="/settings" component={SettingsView} />
+                      <Route path="/" component={RepositoryListView} />
+                    </Switch>
+                  </div>
+                </ApolloProvider>
+              );
+            }}
+          </SettingsContext.Consumer>
+        </SettingsContainer>
+      </BrowserRouter>
     );
   }
 }
