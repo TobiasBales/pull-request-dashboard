@@ -17,6 +17,8 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
+    "deploy": "yarn create-npmrc && yarn build",
+    "create-npmrc": "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
