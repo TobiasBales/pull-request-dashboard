@@ -52,6 +52,14 @@ export class SettingsContainer extends React.Component<Props, State> {
   }
 
   public render() {
+    const repositories = this.props.settings.repositories.slice().sort((a, b) => {
+      if (a.owner !== b.owner) {
+        return a.owner.localeCompare(b.owner)
+      }
+
+      return a.name.localeCompare(b.name);
+    })
+
     return (
       <div className="container">
         <ContentBoxGroup>
@@ -83,7 +91,7 @@ export class SettingsContainer extends React.Component<Props, State> {
 
             <Table>
               <TableBody>
-                {this.props.settings.repositories.map(r => (
+                {repositories.map(r => (
                   <TableRow key={`${r.owner}/${r.name}`}>
                     <TableColumn mobileLabel="owner/repo">
                       {r.owner}/{r.name}
