@@ -38,7 +38,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (loading) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="medium">
+                <Headline noGutter={true} type="big">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -51,7 +51,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (error) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="medium">
+                <Headline noGutter={true} type="big">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -64,7 +64,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (!data) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="medium">
+                <Headline noGutter={true} type="big">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -80,7 +80,7 @@ export class PullRequestsList extends React.Component<Props> {
 
           return (
             <ContentBox className="pull-requests-list">
-              <Headline noGutter={true} type="medium">
+              <Headline noGutter={true} type="big">
                 {`${this.props.repository.owner}/${this.props.repository.name}`}
               </Headline>
               <Table>
