@@ -38,7 +38,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (loading) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="big">
+                <Headline noGutter={true} type="small">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -51,7 +51,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (error) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="big">
+                <Headline noGutter={true} type="small">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -64,7 +64,7 @@ export class PullRequestsList extends React.Component<Props> {
           if (!data) {
             return (
               <ContentBox className="pull-requests-list">
-                <Headline noGutter={true} type="big">
+                <Headline noGutter={true} type="small">
                   {`${this.props.repository.owner}/${
                     this.props.repository.name
                   }`}
@@ -80,10 +80,10 @@ export class PullRequestsList extends React.Component<Props> {
 
           return (
             <ContentBox className="pull-requests-list">
-              <Headline noGutter={true} type="big">
+              <Headline noGutter={true} type="small">
                 {`${this.props.repository.owner}/${this.props.repository.name}`}
               </Headline>
-              <Table>
+              <Table className="pull-requests-table">
                 <TableBody>
                   {data.repository.pullRequests.nodes.map(pr => {
                     const buildSucceeded =
@@ -103,7 +103,7 @@ export class PullRequestsList extends React.Component<Props> {
                             src={pr.author.avatarUrl}
                           />
                         </TableColumnAction>
-                        <TableColumn mobileLabel="title">
+                        <TableColumn mobileLabel="title" className="pull-request-title">
                           {pr.title}
                         </TableColumn>
                         <TableColumnAction>
