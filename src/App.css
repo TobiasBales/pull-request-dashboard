@@ -25,7 +25,13 @@
 .pull-requests-list:nth-child(1):nth-last-child(4),
 .pull-requests-list:nth-child(2):nth-last-child(3),
 .pull-requests-list:nth-child(3):nth-last-child(2),
-.pull-requests-list:nth-child(4):nth-last-child(1) {
+.pull-requests-list:nth-child(4):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(3),
+.pull-requests-list:nth-child(2):nth-last-child(2),
+.pull-requests-list:nth-child(3):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(2),
+.pull-requests-list:nth-child(2):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(1) {
   max-height: 100%;
 }
 
@@ -36,7 +42,25 @@
 .pull-requests-list:nth-child(5):nth-last-child(4),
 .pull-requests-list:nth-child(6):nth-last-child(3),
 .pull-requests-list:nth-child(7):nth-last-child(2),
-.pull-requests-list:nth-child(8):nth-last-child(1) {
+.pull-requests-list:nth-child(8):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(7),
+.pull-requests-list:nth-child(2):nth-last-child(6),
+.pull-requests-list:nth-child(3):nth-last-child(5),
+.pull-requests-list:nth-child(4):nth-last-child(4),
+.pull-requests-list:nth-child(5):nth-last-child(3),
+.pull-requests-list:nth-child(6):nth-last-child(2),
+.pull-requests-list:nth-child(7):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(6),
+.pull-requests-list:nth-child(2):nth-last-child(5),
+.pull-requests-list:nth-child(3):nth-last-child(4),
+.pull-requests-list:nth-child(4):nth-last-child(3),
+.pull-requests-list:nth-child(5):nth-last-child(2),
+.pull-requests-list:nth-child(6):nth-last-child(1),
+.pull-requests-list:nth-child(1):nth-last-child(5),
+.pull-requests-list:nth-child(2):nth-last-child(4),
+.pull-requests-list:nth-child(3):nth-last-child(3),
+.pull-requests-list:nth-child(4):nth-last-child(2),
+.pull-requests-list:nth-child(5):nth-last-child(1) {
   max-height: 50%;
 }
 
