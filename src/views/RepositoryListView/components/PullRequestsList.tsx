@@ -78,6 +78,19 @@ export class PullRequestsList extends React.Component<Props> {
             return null;
           }
 
+          const sortedPrs = data.repository.pullRequests.nodes.slice()
+          sortedPrs.sort((a, b) => {
+            const aIsBot = a.author.login === 'renovate';
+            const bIsBot = b.author.login === 'renovate';
+            if (!aIsBot && bIsBot) {
+              return -1
+            } else if ( aIsBot && !bIsBot) {
+              return 1
+            }
+
+            return a.number.toFixed(0).localeCompare(b.number.toFixed(0))
+          })
+
           return (
             <ContentBox className="pull-requests-list">
               <Headline noGutter={true} type="small">
@@ -85,7 +98,7 @@ export class PullRequestsList extends React.Component<Props> {
               </Headline>
               <Table className="pull-requests-table">
                 <TableBody>
-                  {data.repository.pullRequests.nodes.map(pr => {
+                  {sortedPrs.map(pr => {
                     const buildSucceeded =
                       (pr.commits.nodes.length !== 0 &&
                         !pr.commits.nodes[0].commit.status) ||

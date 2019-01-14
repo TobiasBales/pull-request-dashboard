@@ -71,9 +71,9 @@ export interface FetchPullRequestsResponse {
             };
           }>;
         };
-        labels: Array<{
-          nodes: { name: string };
-        }>;
+        labels: {
+          nodes: Array<{ name: string }>
+        };
         mergeable: 'MERGABLE' | 'CONFLICTING' | 'UNKNOWN';
         number: number;
         updatedAt: string;
