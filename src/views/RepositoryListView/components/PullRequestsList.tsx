@@ -23,6 +23,10 @@ interface Props {
   repository: GithubRepository;
 }
 
+function isBot(commit: {author: {login: string}}): boolean {
+  return commit.author.login === 'renovate' || commit.author.login === 'dependabot'
+}
+
 export class PullRequestsList extends React.Component<Props> {
   public render() {
     return (
@@ -79,9 +83,10 @@ export class PullRequestsList extends React.Component<Props> {
           }
 
           const sortedPrs = data.repository.pullRequests.nodes.slice()
+
           sortedPrs.sort((a, b) => {
-            const aIsBot = a.author.login === 'renovate';
-            const bIsBot = b.author.login === 'renovate';
+            const aIsBot = isBot(a);
+            const bIsBot = isBot(b);
             if (!aIsBot && bIsBot) {
               return -1
             } else if ( aIsBot && !bIsBot) {
